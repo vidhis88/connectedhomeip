@@ -69,12 +69,13 @@ class OnOffClientFragment : Fragment(), ChipDeviceController.CompletionListener 
   }
 
   private fun sendCommand() {
-    commandType ?: run {
+    val chipCommandType = commandType ?: run {
       Log.e(TAG, "No ChipCommandType specified.")
       return
     }
 
-    commandStatusTv.text = requireContext().getString(R.string.echo_status_sending_message)
+    commandStatusTv.text =
+        requireContext().getString(R.string.send_command_type_label_text, chipCommandType.name)
 
     deviceController.beginSendCommand(commandType)
   }

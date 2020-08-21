@@ -31,8 +31,12 @@ public class ChipDeviceController {
     completionListener = listener;
   }
 
+  public void beginConnectDevice(int discriminator, int setupPincode) {
+    beginConnectDevice(deviceControllerPtr, discriminator, setupPincode);
+  }
+
   public void beginConnectDevice(String ipAddress) {
-    beginConnectDevice(deviceControllerPtr, ipAddress);
+    beginConnectDeviceIp(deviceControllerPtr, ipAddress);
   }
 
   public boolean isConnected() {
@@ -65,7 +69,9 @@ public class ChipDeviceController {
 
   private native long newDeviceController();
 
-  private native void beginConnectDevice(long deviceControllerPtr, String ipAddress);
+  private native void beginConnectDevice(long deviceControllerPtr, int discrimnator, long pinCode);
+
+  private native void beginConnectDeviceIp(long deviceControllerPtr, String ipAddress);
 
   private native boolean isConnected(long deviceControllerPtr);
 

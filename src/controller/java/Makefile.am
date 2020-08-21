@@ -61,6 +61,16 @@ libCHIPController_la_SOURCES                 = \
     CHIPDeviceController-JNI.cpp               \
     $(NULL)
 
+if CONFIG_NETWORK_LAYER_BLE
+
+libCHIPController_la_SOURCES                += \
+    AndroidBleApplicationDelegate.cpp          \
+    AndroidBleConnectionDelegate.cpp           \
+    AndroidBlePlatformDelegate.cpp             \
+    $(NULL)
+
+endif # CONFIG_NETWORK_LAYER_BLE
+
 libCHIPController_la_LIBADD                  = \
     -L$(top_builddir)/src/lib -lCHIP           \
     $(LWIP_LDFLAGS) $(LWIP_LIBS)               \
